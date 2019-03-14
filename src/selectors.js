@@ -8,7 +8,13 @@ export function visibilityFilterSelector(state) {
   return state.visibilityFilter;
 }
 
-export function visibleTodosSelector(todos, filter) {
+
+
+export function visibleTodosSelector(state) {
+
+  const filter = visibilityFilterSelector(state);
+  const todos = todoSelector(state);
+
   switch (filter) {
     case VisibilityFilters.SHOW_ALL:
       return todos
@@ -20,4 +26,3 @@ export function visibleTodosSelector(todos, filter) {
       throw new Error('Unknown filter: ' + filter)
   }
 }
-
