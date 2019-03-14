@@ -1,7 +1,7 @@
-import {VisibilityFilters} from "../actions";
-import {visibleTodosSelector} from "../selectors";
+import {VisibilityFilters} from "../todoList";
+import {visibleTodosSelector} from "../todoList";
 
-describe("Selecting visible todos with filter", () => {
+describe("Selecting visible reducers with filter", () => {
     describe("ALL", () => {
         test("Should return all Todo items on state", () => {
             expect(visibleTodosSelector.resultFunc(
@@ -20,7 +20,7 @@ describe("Selecting visible todos with filter", () => {
                 "text": "Run the tests"
             }, {"completed": false, "id": 1, "text": "Use Redux"}]);
         });
-        test("Should return all Todo items on state even when we have completed and uncompleted todos", () => {
+        test("Should return all Todo items on state even when we have completed and uncompleted reducers", () => {
             expect(visibleTodosSelector.resultFunc(
                 VisibilityFilters.SHOW_ALL,
                 [
@@ -59,7 +59,7 @@ describe("Selecting visible todos with filter", () => {
                 "id": 1,
                 "text": "Use Redux"
             }]);
-        })
+        });
     });
     describe("filtering only the active ones", () => {
         test("Should return only active Todo items on state", () => {
@@ -80,6 +80,6 @@ describe("Selecting visible todos with filter", () => {
                 completed: false,
                 id: 0
             }]);
-        })
+        });
     });
 });
