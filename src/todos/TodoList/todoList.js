@@ -19,25 +19,6 @@ export const VisibilityFilters = {
     SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
 
-const reducers = (state = VisibilityFilters.SHOW_ALL, action) => {
-    switch (action.type) {
-        case 'ADD_TODO':
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    completed: false
-                }
-            ];
-        case 'SET_VISIBILITY_FILTER':
-            return action.filter;
-        default:
-            return state;
-    }
-};
-
-export default reducers;
 
 export function todoSelector(state) {
     return state.todos;
