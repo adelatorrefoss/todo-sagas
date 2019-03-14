@@ -3,12 +3,8 @@ import {toggleTodo} from '../actions'
 import TodoList from '../components/TodoList'
 import {visibleTodosSelector} from '../selectors';
 
-export const getVisibleTodos = (state) => {
-  return visibleTodosSelector(state);
-}
-
 const mapStateToProps = state => ({
-  todos: getVisibleTodos(state)
+  todos: visibleTodosSelector(state)
 })
 
 const mapDispatchToProps = dispatch => ({
