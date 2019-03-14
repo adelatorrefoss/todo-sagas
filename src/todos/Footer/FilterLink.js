@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { setVisibilityFilter } from '../TodoList/todoList';
+import { setVisibilityFilter } from './filterLink';
 import Link from '../../controls/Link/Link';
 import { visibilityFilterSelector } from '../TodoList/todoList';
 

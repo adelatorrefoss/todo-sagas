@@ -1,4 +1,4 @@
-import {VisibilityFilters} from "../todoList";
+import {VisibilityFilters} from "../../Footer/filterLink";
 import {visibleTodosSelector} from "../todoList";
 
 describe("Selecting visible reducers with filter", () => {
