@@ -1,8 +1,8 @@
-import reducers from "../todoList";
+import reducers, {VisibilityFilters} from "../todoList";
 
 describe('reducers reducer', () => {
     it('should handle initial state', () => {
-        expect(reducers(undefined, {})).toEqual([]);
+        expect(reducers(undefined, {})).toEqual(VisibilityFilters.SHOW_ALL);
     });
 
     it('should handle ADD_TODO', () => {

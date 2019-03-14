@@ -19,7 +19,7 @@ export const VisibilityFilters = {
     SHOW_ACTIVE: 'SHOW_ACTIVE'
 };
 
-const reducers = (state = [], action) => {
+const reducers = (state = VisibilityFilters.SHOW_ALL, action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return [

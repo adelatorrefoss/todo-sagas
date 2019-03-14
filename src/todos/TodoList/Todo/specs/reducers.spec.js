@@ -1,6 +1,9 @@
 import reducers from '../todo'
 
 describe('reducers reducer', () => {
+  it('should handle initial state', () => {
+    expect(reducers(undefined, {})).toEqual([]);
+  });
   it('should handle TOGGLE_TODO', () => {
     expect(
       reducers([
