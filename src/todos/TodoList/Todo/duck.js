@@ -9,10 +9,11 @@ export const loadTodosAsync = () => {
     }
 };
 
-export const loadTodos = () => {
+export const loadTodosAction = (data) => {
     return {
         type: 'LOAD_TODOS',
-    }
+        payload: data
+    };
 };
 
 const reducers = (state = [], action) => {

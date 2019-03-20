@@ -1,5 +1,6 @@
 import {all, call, put, takeEvery} from 'redux-saga/effects'
 import api from "./api";
+import {loadTodosAction} from "./duck";
 
 export const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
@@ -27,9 +28,7 @@ export function* loadTodos() {
 
   const data = yield call(adaptMarvelDataToTodoItems, result);
 
-  yield put({
-    type: 'LOAD_TODOS', payload: data
-  });
+  yield put(loadTodosAction(data));
 }
 
 export function* watchLoadTodos() {
