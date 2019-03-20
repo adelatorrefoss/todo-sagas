@@ -5,13 +5,15 @@ import { loadTodosAction } from "./duck";
 export const delay = (ms) => new Promise(res => setTimeout(res, ms));
 
 export const adaptMarvelDataToTodoItems = result => {
-  return result.map(x => {
+
+  return result.map(({ id, name }) => {
     return {
-      id: x.id,
-      text: x.name,
+      id: id,
+      text: name,
       completed: false,
     };
-  });
+  }
+  );
 };
 
 export function* loadTodos() {
