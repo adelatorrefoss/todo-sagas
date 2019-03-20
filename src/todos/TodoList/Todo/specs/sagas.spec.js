@@ -1,58 +1,39 @@
-import {adaptMarvelDataToTodoItems, loadTodos} from "../sagas";
+import { adaptMarvelDataToTodoItems, loadTodos } from "../sagas";
 import api from "../api";
 
-import {call, put} from 'redux-saga/effects'
+import { call, put } from 'redux-saga/effects'
+import { loadTodosAction } from "../duck";
 
 
 jest.mock('../api');
 
 describe('load todos', () => {
-    it('returns data', () => {
-        var gen = loadTodos();
+    describe('execution order', () => {
+        const yeldOutput = 'fake';
+        const gen = loadTodos();
 
+        it('shoud call api getMarvelData', () => {
+            expect(gen.next().value).toEqual(
+                call(api.getMarvelData)
+            );
+        });
 
-        const data = [
-            {
-                "id": 1011334,
-                "name": "3-D Man"
-            }
-        ];
+        it('shoud call adaptMarvelDataToTodoItems', () => {
+            expect(gen.next(yeldOutput).value).toEqual(
+                call(adaptMarvelDataToTodoItems, yeldOutput)
+            );
 
-        api.getMarvelData.mockResolvedValue({data});
+        });
 
-        let result = gen.next().value;
+        it('shoud dispatch loadTodosAction', () => {
+            expect(gen.next(yeldOutput).value).toEqual(
+                put(loadTodosAction(yeldOutput))
+            );
+        });
 
-        // expect(call(fetch, "https://gateway.marvel.com:443/v1/public/characters?apikey=d70889377fa86672be37490f39941adc")).toEqual(
-        expect(result).toEqual(
-            call(api.getMarvelData)
-        );
-
-
-
-        expect(gen.next().value).toEqual(
-            call(adaptMarvelDataToTodoItems, undefined)
-        );
-
-
-        expect(gen.next().value).toEqual(
-            put({
-                type: 'LOAD_TODOS',
-                payload: [
-                    {
-                        text: 'Marvel Write the tests',
-                        completed: false,
-                        id: 0
-                    },
-                    {
-                        text: 'Marvel Run the tests',
-                        completed: false,
-                        id: 1
-                    }
-                ]
-            })
-        );
-
-        expect({done: true, value: undefined})
-            .toEqual(gen.next());
+        it('shoud finish the saga', () => {
+            expect({ done: true, value: undefined })
+                .toEqual(gen.next());
+        });
     });
 });
