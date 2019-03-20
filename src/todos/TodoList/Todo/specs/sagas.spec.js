@@ -2,12 +2,24 @@ import {delay, loadTodos} from "../sagas";
 
 import {call, put} from 'redux-saga/effects'
 
+
 describe('xxx', () => {
     it('xxx', () => {
         var gen = loadTodos();
 
-        // gen.next().value
-        expect(call(delay, 1000)).toEqual(
+        jest.mock('api');
+
+        api.getMarvelData.mockResolvedValue({data: ''});
+
+        let result = gen.next().value;
+
+        // expect(call(fetch, "https://gateway.marvel.com:443/v1/public/characters?apikey=d70889377fa86672be37490f39941adc")).toEqual(
+        expect(call(api.getMarvelData)).toEqual(
+            result
+        );
+
+
+        expect(call(adaptMarvelDataToTodoItems, result)).toEqual(
             gen.next().value
         );
 
