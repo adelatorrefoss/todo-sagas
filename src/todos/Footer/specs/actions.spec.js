@@ -1,4 +1,4 @@
-import {setVisibilityFilter} from "../filterLink";
+import {setVisibilityFilter} from "../duck";
 
 describe('todo actions', () => {
   it('setVisibilityFilter should create SET_VISIBILITY_FILTER action', () => {

@@ -1,4 +1,4 @@
-import * as actions from '../todo'
+import * as actions from '../duck'
 
 describe('todo actions', () => {
     it('toggleTodo should create TOGGLE_TODO action', () => {

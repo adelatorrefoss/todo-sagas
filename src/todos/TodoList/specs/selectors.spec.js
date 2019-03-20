@@ -1,5 +1,5 @@
-import {VisibilityFilters} from "../../Footer/filterLink";
-import {visibleTodosSelector} from "../todoList";
+import {VisibilityFilters} from "../../Footer/duck";
+import {visibleTodosSelector} from "../duck";
 
 describe("Selecting visible reducers with filter", () => {
     describe("ALL", () => {

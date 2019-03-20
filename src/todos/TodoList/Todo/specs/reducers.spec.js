@@ -1,4 +1,4 @@
-import reducers from '../todo'
+import reducers from '../duck'
 
 describe('reducers reducer', () => {
   it('should handle initial state', () => {

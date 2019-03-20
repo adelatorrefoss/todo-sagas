@@ -1,5 +1,5 @@
 import {createSelector} from "reselect";
-import {VisibilityFilters} from "../Footer/filterLink";
+import {VisibilityFilters} from "../Footer/duck";
 
 
 let nextTodoId = 0;
