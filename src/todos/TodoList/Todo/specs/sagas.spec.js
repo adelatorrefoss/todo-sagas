@@ -37,3 +37,19 @@ describe('load todos', () => {
         });
     });
 });
+
+describe('adaptMarvelDataToTodoItems', () => {
+    it('should normalize results when receives api data', () => {
+        const apiResultFake = [
+            { id: 1234, name: "John Doe", foo: "bar" },
+            { id: 1234, name: "John Appleseed", foo: "xyz" },
+        ];
+
+        const expected = [
+            { id: 1234, text: "John Doe", completed: false },
+            { id: 1234, text: "John Appleseed", completed: false },
+        ];
+
+        expect(adaptMarvelDataToTodoItems(apiResultFake)).toEqual(expected)
+    });
+})
