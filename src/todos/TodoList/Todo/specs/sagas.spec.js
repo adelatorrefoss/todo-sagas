@@ -6,42 +6,50 @@ import {call, put} from 'redux-saga/effects'
 
 jest.mock('../api');
 
-describe('xxx', () => {
-    it('xxx', () => {
+describe('load todos', () => {
+    it('returns data', () => {
         var gen = loadTodos();
 
 
-        api.getMarvelData.mockResolvedValue({data: ''});
+        const data = [
+            {
+                "id": 1011334,
+                "name": "3-D Man"
+            }
+        ];
+
+        api.getMarvelData.mockResolvedValue({data});
 
         let result = gen.next().value;
 
         // expect(call(fetch, "https://gateway.marvel.com:443/v1/public/characters?apikey=d70889377fa86672be37490f39941adc")).toEqual(
-        expect(call(api.getMarvelData)).toEqual(
-            result
+        expect(result).toEqual(
+            call(api.getMarvelData)
         );
 
 
-        expect(call(adaptMarvelDataToTodoItems, undefined)).toEqual(
-            gen.next().value
+
+        expect(gen.next().value).toEqual(
+            call(adaptMarvelDataToTodoItems, undefined)
         );
 
 
-        expect(put({
-            type: 'LOAD_TODOS',
-            payload: [
-                {
-                    text: 'Write the tests',
-                    completed: false,
-                    id: 0
-                },
-                {
-                    text: 'Run the tests',
-                    completed: false,
-                    id: 1
-                }
-            ]
-        })).toEqual(
-            gen.next().value
+        expect(gen.next().value).toEqual(
+            put({
+                type: 'LOAD_TODOS',
+                payload: [
+                    {
+                        text: 'Marvel Write the tests',
+                        completed: false,
+                        id: 0
+                    },
+                    {
+                        text: 'Marvel Run the tests',
+                        completed: false,
+                        id: 1
+                    }
+                ]
+            })
         );
 
         expect({done: true, value: undefined})
