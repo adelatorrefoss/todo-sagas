@@ -3,21 +3,38 @@ export const toggleTodo = id => ({
     id
 });
 
+export const loadTodosAsync = () => {
+    return {
+        type: 'LOAD_TODOS_ASYNC',
+    }
+};
+
+export const loadTodos = () => {
+    return {
+        type: 'LOAD_TODOS',
+    }
+};
+
 const reducers = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
-        return [
-            ...state,
-            {
-                id: action.id,
-                text: action.text,
-                completed: false
-            }
-        ];
+            return [
+                ...state,
+                {
+                    id: action.id,
+                    text: action.text,
+                    completed: false
+                }
+            ];
+        case 'LOAD_TODOS':
+            return [
+                ...state,
+                ...action.payload
+            ];
         case 'TOGGLE_TODO':
             return state.map(todo =>
                 (todo.id === action.id)
-                    ? {...todo, completed: !todo.completed}
+                    ? { ...todo, completed: !todo.completed }
                     : todo
             );
         default:

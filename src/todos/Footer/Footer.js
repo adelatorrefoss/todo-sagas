@@ -1,6 +1,7 @@
 import React from 'react';
 import FilterLink from './FilterLink';
 import { VisibilityFilters } from './duck';
+import LoadTodosButton from './LoadTodosButton';
 
 const Footer = () => (
   <div>
@@ -14,6 +15,9 @@ const Footer = () => (
     <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
       Completed
     </FilterLink>
+    <LoadTodosButton>
+      Load Todos
+    </LoadTodosButton>
   </div>
 );
 
