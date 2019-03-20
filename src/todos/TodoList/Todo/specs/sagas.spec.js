@@ -1,13 +1,15 @@
-import {delay, loadTodos} from "../sagas";
+import {adaptMarvelDataToTodoItems, loadTodos} from "../sagas";
+import api from "../api";
 
 import {call, put} from 'redux-saga/effects'
 
+
+jest.mock('../api');
 
 describe('xxx', () => {
     it('xxx', () => {
         var gen = loadTodos();
 
-        jest.mock('api');
 
         api.getMarvelData.mockResolvedValue({data: ''});
 
@@ -19,7 +21,7 @@ describe('xxx', () => {
         );
 
 
-        expect(call(adaptMarvelDataToTodoItems, result)).toEqual(
+        expect(call(adaptMarvelDataToTodoItems, undefined)).toEqual(
             gen.next().value
         );
 
